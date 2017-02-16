@@ -1,4 +1,4 @@
-package com.restfully.shop.services;
+package com.restfully.services;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
