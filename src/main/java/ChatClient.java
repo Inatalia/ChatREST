@@ -90,13 +90,13 @@ public class ChatClient
         		 GenericEntity<MultipartFormDataOutput> entity = new GenericEntity<MultipartFormDataOutput>(mdo) {};
         		 Response r = target.request().post(Entity.entity(entity, MediaType.MULTIPART_FORM_DATA_TYPE));
 
-        		 /*MultipartFormDataInput  input =  r.readEntity(MultipartFormDataInput.class);
-                 Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
+        		 MultipartFormDataInput  input =  r.readEntity(MultipartFormDataInput.class);
+                 	Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
       
-                 //Get file data to save to disk
-                 List<InputPart> inputParts = uploadForm.get("file2");
-                 for (InputPart inputPart : inputParts)
-                 {
+                 	//Get file data to save to disk
+                 	List<InputPart> inputParts = uploadForm.get("file2");
+                 	for (InputPart inputPart : inputParts)
+                 	{
                 	 try
                      {
                 		 InputStream inputStream = inputPart.getBody(InputStream.class, null);
@@ -112,7 +112,7 @@ public class ChatClient
                      } catch (Exception e) {
                          e.printStackTrace();
                      }
-                 }*/
+                 	}
                  target.request().post(Entity.text(name + ": sending " + file.getName()));
         	 }
          } 
