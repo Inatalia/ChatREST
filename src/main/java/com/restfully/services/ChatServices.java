@@ -157,10 +157,10 @@ public class ChatServices
        }
        
         // return the result
-       MultipartFormDataOutput mdo = new MultipartFormDataOutput();
-       mdo.addFormData("file2", new FileInputStream(new File("/Users/irenenatalia/output/output.jpg")), MediaType.APPLICATION_OCTET_STREAM_TYPE);
-       return mdo;
-       //return null;
+       //MultipartFormDataOutput mdo = new MultipartFormDataOutput();
+       //mdo.addFormData("file2", new FileInputStream(new File("/Users/irenenatalia/output/output.jpg")), MediaType.APPLICATION_OCTET_STREAM_TYPE);
+       //return mdo;
+       return null;
    }
    
    @GET

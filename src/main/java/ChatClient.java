@@ -84,36 +84,36 @@ public class ChatClient
         		 target.request().post(Entity.text(name + ": Invalid filename!"));
         	 }
         	 else if(file.isFile()){
-        		 MultipartFormDataOutput mdo = new MultipartFormDataOutput();
-        	       mdo.addFormData("file1", new FileInputStream(file), 
+			MultipartFormDataOutput mdo = new MultipartFormDataOutput();
+        	       	mdo.addFormData("file1", new FileInputStream(file), 
         	    		   MediaType.APPLICATION_OCTET_STREAM_TYPE);
-        		 GenericEntity<MultipartFormDataOutput> entity = new GenericEntity<MultipartFormDataOutput>(mdo) {};
-        		 Response r = target.request().post(Entity.entity(entity, MediaType.MULTIPART_FORM_DATA_TYPE));
+        		GenericEntity<MultipartFormDataOutput> entity = new GenericEntity<MultipartFormDataOutput>(mdo) {};
+        		Response r = target.request().post(Entity.entity(entity, MediaType.MULTIPART_FORM_DATA_TYPE));
 
-        		 MultipartFormDataInput  input =  r.readEntity(MultipartFormDataInput.class);
+        		/*MultipartFormDataInput  input =  r.readEntity(MultipartFormDataInput.class);
                  	Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
       
                  	//Get file data to save to disk
                  	List<InputPart> inputParts = uploadForm.get("file2");
                  	for (InputPart inputPart : inputParts)
                  	{
-                	 try
-                     {
-                		 InputStream inputStream = inputPart.getBody(InputStream.class, null);
-                		 OutputStream out = new FileOutputStream(new File("/Users/irenenatalia/Desktop/" + file.getName()));
-                		 int read = 0;
-                         byte[] bytes = new byte[2048];
-                         while ((read = inputStream.read(bytes)) != -1) {
-                        	 out.write(bytes, 0, read);
-                         }
-                         inputStream.close();
-                         out.flush();
-                         out.close();
-                     } catch (Exception e) {
-                         e.printStackTrace();
-                     }
-                 	}
-                 target.request().post(Entity.text(name + ": sending " + file.getName()));
+                		try
+                     		{
+                			InputStream inputStream = inputPart.getBody(InputStream.class, null);
+                		 	OutputStream out = new FileOutputStream(new File("/Users/irenenatalia/Desktop/" + file.getName()));
+                		 	int read = 0;
+                         		byte[] bytes = new byte[2048];
+                         		while ((read = inputStream.read(bytes)) != -1) {
+                        	 		out.write(bytes, 0, read);
+                         		}
+                         		inputStream.close();
+                         		out.flush();
+                         		out.close();
+                     		} catch (Exception e) {
+                         		e.printStackTrace();
+                     		}
+                 	}*/
+                 	target.request().post(Entity.text(name + ": sending " + file.getName()));
         	 }
          } 
          else{
