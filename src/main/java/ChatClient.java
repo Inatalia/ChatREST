@@ -100,7 +100,7 @@ public class ChatClient
                 		try
                      		{
                 			InputStream inputStream = inputPart.getBody(InputStream.class, null);
-                		 	OutputStream out = new FileOutputStream(new File("/Users/irenenatalia/Desktop/" + file.getName()));
+                		 	OutputStream out = new FileOutputStream(new File("/Users/irenenatalia/Desktop/input/" + file.getName()));
                 		 	int read = 0;
                          		byte[] bytes = new byte[2048];
                          		while ((read = inputStream.read(bytes)) != -1) {

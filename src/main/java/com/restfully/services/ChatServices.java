@@ -138,7 +138,7 @@ public class ChatServices
                //MultivaluedMap<String, String> header = inputPart.getHeaders();
                //convert the uploaded file to inputstream and write it to disk
                InputStream inputStream = inputPart.getBody(InputStream.class, null);
-               File file = new File("/Users/irenenatalia/output/output.jpg");
+               File file = new File("/Users/irenenatalia/Desktop/output/output.jpg");
                OutputStream out = new FileOutputStream(file);
                int read = 0;
                byte[] bytes = new byte[2048];
