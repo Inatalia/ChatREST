@@ -26,6 +26,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  * @author Irene Hardjono
@@ -35,12 +36,24 @@ public class ChatClient
 {
    public static void main(String[] args) throws Exception
    {
-      String name = args[0];
-
+	   System.out.println("Welcome to Chat Application!");
+	  Scanner sc = new Scanner(System.in);
+      String name = "";//args[0];
+      while(name.isEmpty()){
+    	  System.out.print("Please enter username: ");
+    	  name = sc.nextLine();
+    	  if(name.equals("\n")){
+    		  name = "";
+    	  } else {
+    		  System.out.println("Username " + name + " has been sucessfully created!");
+    		  break;
+    	  }
+      }
+      final String username = name;
+      //System.out.println();
+      //System.out.println();
       System.out.println();
-      System.out.println();
-      System.out.println();
-      System.out.println();
+      System.out.print(username + " > ");
 
       final Client client = new ResteasyClientBuilder()
                           .connectionPoolSize(3)
@@ -57,7 +70,7 @@ public class ChatClient
             System.out.println();
             System.out.print(message);// + "\r");
             System.out.println();
-            System.out.print("> ");
+            System.out.print(username + " > ");
             client.target(next).request().async().get(this);
          }
 
@@ -117,7 +130,7 @@ public class ChatClient
         	 }
          } 
          else{
-     	 	target.request().post(Entity.text(name + ": " + message));
+     	 	target.request().post(Entity.text("(Incoming message from " + name + ": " + message + ")"));
       	 }
       }
    }
