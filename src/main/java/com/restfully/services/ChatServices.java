@@ -125,7 +125,7 @@ public class ChatServices
    @POST
    @Produces("multipart/form-data")
    @Consumes("multipart/form-data")
-   public MultipartFormDataOutput uploadFile( MultipartFormDataInput input) throws IOException
+   public void post( MultipartFormDataInput input) throws IOException
    {
 	   Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
        //Get file data to save
@@ -160,7 +160,7 @@ public class ChatServices
        //MultipartFormDataOutput mdo = new MultipartFormDataOutput();
        //mdo.addFormData("file2", new FileInputStream(new File("/Users/irenenatalia/output/output.jpg")), MediaType.APPLICATION_OCTET_STREAM_TYPE);
        //return mdo;
-       return null;
+       //return null;
    }
    
    @GET

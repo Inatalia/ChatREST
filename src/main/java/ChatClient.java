@@ -36,7 +36,7 @@ public class ChatClient
 {
    public static void main(String[] args) throws Exception
    {
-	   System.out.println("Welcome to Chat Application!");
+	  System.out.println("Welcome to Chat Application!");
 	  Scanner sc = new Scanner(System.in);
       String name = "";//args[0];
       while(name.isEmpty()){
@@ -50,11 +50,9 @@ public class ChatClient
     	  }
       }
       final String username = name;
-      //System.out.println();
-      //System.out.println();
-      System.out.println();
-      System.out.print(username + " > ");
 
+      System.out.println();
+      
       final Client client = new ResteasyClientBuilder()
                           .connectionPoolSize(3)
                           .build();
@@ -84,7 +82,7 @@ public class ChatClient
 
       while (true)
       {
-         System.out.print("> ");
+         System.out.print(username + " > ");
          BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
          String message = br.readLine();
          if(message.toLowerCase().contains("upload")){
@@ -97,40 +95,16 @@ public class ChatClient
         		 target.request().post(Entity.text(name + ": Invalid filename!"));
         	 }
         	 else if(file.isFile()){
-			MultipartFormDataOutput mdo = new MultipartFormDataOutput();
+        		 MultipartFormDataOutput mdo = new MultipartFormDataOutput();
         	       	mdo.addFormData("file1", new FileInputStream(file), 
         	    		   MediaType.APPLICATION_OCTET_STREAM_TYPE);
-        		GenericEntity<MultipartFormDataOutput> entity = new GenericEntity<MultipartFormDataOutput>(mdo) {};
-        		Response r = target.request().post(Entity.entity(entity, MediaType.MULTIPART_FORM_DATA_TYPE));
-
-        		/*MultipartFormDataInput  input =  r.readEntity(MultipartFormDataInput.class);
-                 	Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
-      
-                 	//Get file data to save to disk
-                 	List<InputPart> inputParts = uploadForm.get("file2");
-                 	for (InputPart inputPart : inputParts)
-                 	{
-                		try
-                     		{
-                			InputStream inputStream = inputPart.getBody(InputStream.class, null);
-                		 	OutputStream out = new FileOutputStream(new File("/Users/irenenatalia/Desktop/input/" + file.getName()));
-                		 	int read = 0;
-                         		byte[] bytes = new byte[2048];
-                         		while ((read = inputStream.read(bytes)) != -1) {
-                        	 		out.write(bytes, 0, read);
-                         		}
-                         		inputStream.close();
-                         		out.flush();
-                         		out.close();
-                     		} catch (Exception e) {
-                         		e.printStackTrace();
-                     		}
-                 	}*/
-                 	target.request().post(Entity.text(name + ": sending " + file.getName()));
+        	     GenericEntity<MultipartFormDataOutput> entity = new GenericEntity<MultipartFormDataOutput>(mdo) {};
+        	     target.request().post(Entity.entity(entity, MediaType.MULTIPART_FORM_DATA_TYPE));
+                 target.request().post(Entity.text("(" + name + ": " + file.getName() + ")"));
         	 }
          } 
          else{
-     	 	target.request().post(Entity.text("(Incoming message from " + name + ": " + message + ")"));
+     	 	target.request().post(Entity.text("(" + name + ": " + message + ")"));
       	 }
       }
    }
