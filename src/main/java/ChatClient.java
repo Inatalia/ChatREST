@@ -104,6 +104,12 @@ public class ChatClient
                  target.request().post(Entity.text("(" + name + ": " + file.getName() + ")"));
         	 }
          }
+         else if(message.toLowerCase().equals("/exit")) {
+        	 //target.request().get().close();
+        	 client.close();
+        	 exit(1);
+        	 break;
+         }
          else{
      	 	target.request().post(Entity.text("(" + name + ": " + message + ")"));
       	 }
