@@ -52,6 +52,7 @@ public class ChatClient
       final String username = name;
 
       System.out.println();
+      System.out.print(username + " > ");
       
       final Client client = new ResteasyClientBuilder()
                           .connectionPoolSize(3)
@@ -65,7 +66,7 @@ public class ChatClient
          {
             Link next = response.getLink("next");
             String message = response.readEntity(String.class);
-            System.out.println();
+            //System.out.println();
             System.out.print(message);// + "\r");
             System.out.println();
             System.out.print(username + " > ");
@@ -82,10 +83,10 @@ public class ChatClient
 
       while (true)
       {
-         System.out.print(username + " > ");
+         //System.out.print(username + " > ");
          BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
          String message = br.readLine();
-         if(message.toLowerCase().contains("upload")){
+         if(message.toLowerCase().contains("/upload")){
         	 String filename = message.split(" ")[1];
         	 File file = new File(filename);
         	 if(filename.isEmpty()){
@@ -102,7 +103,7 @@ public class ChatClient
         	     target.request().post(Entity.entity(entity, MediaType.MULTIPART_FORM_DATA_TYPE));
                  target.request().post(Entity.text("(" + name + ": " + file.getName() + ")"));
         	 }
-         } 
+         }
          else{
      	 	target.request().post(Entity.text("(" + name + ": " + message + ")"));
       	 }
