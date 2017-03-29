@@ -107,7 +107,6 @@ public class ChatClient
          else if(message.toLowerCase().equals("/exit")) {
         	 //target.request().get().close();
         	 client.close();
-        	 exit(1);
         	 break;
          }
          else{
